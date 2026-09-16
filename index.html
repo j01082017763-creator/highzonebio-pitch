@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>하이존바이오 — 오픈 이코노미 플랫폼</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;600;700&family=Pretendard:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#1c2118;
+    --paper:#f4f0e6;
+    --forest:#1e3626;
+    --forest-deep:#12211a;
+    --soil:#5b4430;
+    --gold:#b08a4e;
+    --sage:#8a9c7e;
+    --line:#d8d0bd;
+    --maxw:1040px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Pretendard','Noto Sans KR',sans-serif;
+    line-height:1.7;
+    font-size:16px;
+    overflow-x:hidden;
+  }
+  h1,h2,h3,.serif{font-family:'Noto Serif KR', serif;}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 32px;}
+  a{color:inherit;}
+
+  /* ---------- HERO ---------- */
+  .hero{
+    position:relative;
+    min-height:100vh;
+    background:
+      radial-gradient(ellipse 900px 600px at 78% 15%, rgba(176,138,78,0.16), transparent 60%),
+      linear-gradient(155deg, var(--forest-deep) 0%, var(--forest) 55%, #24402c 100%);
+    color:#f4f0e6;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    overflow:hidden;
+  }
+  .hero-veins{
+    position:absolute; inset:0; opacity:0.5; pointer-events:none;
+  }
+  .hero-inner{position:relative;z-index:2;padding:120px 32px 90px;max-width:var(--maxw);margin:0 auto;width:100%;}
+  .hero-eyebrow{
+    font-size:14px; letter-spacing:0.04em; color:var(--sage);
+    opacity:0; animation:riseIn .9s ease forwards; animation-delay:.1s;
+  }
+  .hero h1{
+    font-size:clamp(38px, 6vw, 68px);
+    font-weight:700;
+    line-height:1.28;
+    margin:22px 0 28px;
+    max-width:12em;
+    opacity:0; animation:riseIn .9s ease forwards; animation-delay:.3s;
+  }
+  .hero p{
+    font-size:19px; color:#d9d4c4; max-width:560px;
+    opacity:0; animation:riseIn .9s ease forwards; animation-delay:.55s;
+  }
+  .hero-tags{
+    display:flex; gap:14px; flex-wrap:wrap; margin-top:44px;
+    opacity:0; animation:riseIn .9s ease forwards; animation-delay:.8s;
+  }
+  .hero-tag{
+    border:1px solid rgba(244,240,230,0.28);
+    border-radius:100px;
+    padding:9px 18px;
+    font-size:14px;
+    color:#e9e5d6;
+  }
+  @keyframes riseIn{from{opacity:0; transform:translateY(16px);} to{opacity:1; transform:translateY(0);}}
+
+  .scroll-cue{
+    position:absolute; bottom:34px; left:32px; z-index:2;
+    display:flex; align-items:center; gap:10px; color:#c8c2ab; font-size:13px;
+  }
+  .scroll-cue .line{width:34px;height:1px;background:#c8c2ab;}
+
+  /* ---------- SECTION SHELL ---------- */
+  section{padding:100px 0;}
+  .section-head{max-width:620px; margin-bottom:56px;}
+  .kicker{
+    color:var(--gold); font-size:14px; font-weight:600; margin-bottom:14px;
+  }
+  .section-head h2{font-size:clamp(28px,3.6vw,38px); line-height:1.4; font-weight:700;}
+  .section-head .lead{margin-top:16px; color:#4a4438; font-size:16.5px; max-width:52ch;}
+
+  /* ---------- PROBLEM ---------- */
+  .problem{background:var(--paper);}
+  .problem-grid{
+    display:grid; grid-template-columns:repeat(3,1fr); gap:0;
+    border-top:1px solid var(--line);
+  }
+  .problem-item{
+    padding:34px 28px 34px 0; border-bottom:1px solid var(--line);
+  }
+  .problem-item:not(:last-child){border-right:1px solid var(--line); padding-right:28px;}
+  .problem-item .num{font-family:'Noto Serif KR',serif; font-size:15px; color:var(--gold); margin-bottom:14px;}
+  .problem-item h3{font-size:18px; margin-bottom:10px; font-weight:600;}
+  .problem-item p{font-size:14.5px; color:#5a5346;}
+
+  /* ---------- TECH ROWS ---------- */
+  .tech{background:#ece6d4;}
+  .tech-row{
+    display:grid; grid-template-columns:220px 1fr; gap:40px;
+    align-items:flex-start;
+    padding:38px 0; border-top:1px solid var(--line);
+  }
+  .tech-row:last-child{border-bottom:1px solid var(--line);}
+  .tech-icon{width:72px;height:72px;}
+  .tech-name{font-family:'Noto Serif KR',serif; font-size:15px; color:var(--soil); margin-top:14px;}
+  .tech-body h3{font-size:21px; font-weight:600; margin-bottom:10px;}
+  .tech-body p{color:#4a4438; font-size:15px; max-width:60ch;}
+  .tech-metric{
+    display:inline-block; margin-top:14px; font-size:13.5px; color:var(--forest);
+    background:rgba(30,54,38,0.08); padding:5px 12px; border-radius:3px;
+  }
+
+  /* ---------- FLOW / BUSINESS MODEL ---------- */
+  .flow{background:var(--forest-deep); color:#f0ece0;}
+  .flow .section-head .lead{color:#c9c3b0;}
+  .flow .kicker{color:var(--gold);}
+  .flow-diagram{
+    display:grid; grid-template-columns:1fr 1fr 1fr; gap:0; align-items:stretch;
+    margin-top:20px; position:relative;
+  }
+  .flow-step{
+    border:1px solid rgba(244,240,230,0.18);
+    padding:30px 26px;
+    position:relative;
+  }
+  .flow-step + .flow-step{border-left:none;}
+  .flow-step .step-label{font-size:13px; color:var(--sage); margin-bottom:10px;}
+  .flow-step h3{font-size:19px; font-weight:600; margin-bottom:10px;}
+  .flow-step p{font-size:14px; color:#c9c3b0;}
+  .flow-arrow{
+    position:absolute; top:50%; right:-13px; transform:translateY(-50%);
+    width:26px;height:26px; z-index:3;
+  }
+  .flow-branch{
+    margin-top:0; display:grid; grid-template-columns:1fr 1fr; gap:20px;
+  }
+  .branch-card{
+    border-top:2px solid var(--gold); padding:24px 0 0;
+  }
+  .branch-card.alt{border-top:2px solid var(--sage);}
+  .branch-card h4{font-size:16px; margin-bottom:8px;}
+  .branch-card p{font-size:14px; color:#c9c3b0;}
+
+  /* ---------- SPACES ---------- */
+  .spaces{background:var(--paper);}
+  .space-list{
+    display:grid; grid-template-columns:repeat(4,1fr); gap:24px; margin-top:10px;
+  }
+  .space-card{text-align:left;}
+  .space-card .icon-box{
+    width:100%; aspect-ratio:1; border:1px solid var(--line); border-radius:6px;
+    display:flex; align-items:center; justify-content:center; margin-bottom:14px;
+    background:#eee8d8;
+  }
+  .space-card h4{font-size:15.5px; font-weight:600; margin-bottom:6px;}
+  .space-card p{font-size:13px; color:#6a6353;}
+
+  /* ---------- CHAIN ---------- */
+  .chain{background:#ece6d4;}
+  .chain-split{display:grid; grid-template-columns:1fr 1fr; gap:0; margin-top:10px; border:1px solid var(--line);}
+  .chain-panel{padding:46px 40px;}
+  .chain-panel.a{background:var(--forest); color:#f0ece0;}
+  .chain-panel.b{background:#f4f0e6; border-left:1px solid var(--line);}
+  .chain-tag{font-size:13px; letter-spacing:.02em; margin-bottom:18px;}
+  .chain-panel.a .chain-tag{color:var(--sage);}
+  .chain-panel.b .chain-tag{color:var(--soil);}
+  .chain-panel h3{font-size:24px; margin-bottom:14px;}
+  .chain-panel p{font-size:14.5px;}
+  .chain-panel.a p{color:#d3cebd;}
+  .chain-panel.b p{color:#544c3d;}
+  .chain-meta{margin-top:22px; font-size:13px; display:flex; gap:18px;}
+  .chain-panel.a .chain-meta{color:#a9b79e;}
+  .chain-panel.b .chain-meta{color:#8a8064;}
+
+  /* ---------- ROADMAP ---------- */
+  .roadmap{background:var(--paper);}
+  .rm-line{position:relative; margin-top:50px; padding-top:6px;}
+  .rm-line::before{content:"";position:absolute; top:0; left:0; right:0; height:1px; background:var(--line);}
+  .rm-steps{display:grid; grid-template-columns:repeat(4,1fr);}
+  .rm-step{padding:24px 20px 0 0; position:relative;}
+  .rm-dot{width:9px;height:9px;border-radius:50%;background:var(--gold); position:absolute; top:-4.5px; left:0;}
+  .rm-step .phase{font-size:13px; color:var(--gold); margin-bottom:10px;}
+  .rm-step h4{font-size:16px; font-weight:600; margin-bottom:8px; line-height:1.4;}
+  .rm-step p{font-size:13.5px; color:#5a5346;}
+
+  /* ---------- NOTE / FOOTER ---------- */
+  .note{background:#e4ddc6; border-top:1px solid var(--line); border-bottom:1px solid var(--line);}
+  .note .wrap{padding:34px 32px; display:flex; gap:18px; align-items:flex-start;}
+  .note p{font-size:13.5px; color:#6a6248; line-height:1.7;}
+  .note .mark{font-family:'Noto Serif KR',serif; font-size:22px; color:var(--gold);}
+
+  footer{background:var(--forest-deep); color:#c9c3b0; padding:70px 0 40px;}
+  footer h2{color:#f4f0e6; font-size:28px; margin-bottom:16px; max-width:16ch;}
+  footer p{font-size:14.5px; max-width:48ch; margin-bottom:30px;}
+  .foot-bottom{margin-top:60px; padding-top:24px; border-top:1px solid rgba(244,240,230,0.14); font-size:12.5px; color:#8f8a76; display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px;}
+
+  @media (max-width:860px){
+    .problem-grid{grid-template-columns:1fr;}
+    .problem-item{border-right:none !important; padding-right:0 !important;}
+    .tech-row{grid-template-columns:1fr; gap:16px;}
+    .flow-diagram{grid-template-columns:1fr;}
+    .flow-step{border-left:1px solid rgba(244,240,230,0.18) !important;}
+    .flow-step + .flow-step{border-top:none; border-left:1px solid rgba(244,240,230,0.18) !important;}
+    .flow-arrow{display:none;}
+    .flow-branch{grid-template-columns:1fr;}
+    .space-list{grid-template-columns:1fr 1fr;}
+    .chain-split{grid-template-columns:1fr;}
+    .chain-panel.b{border-left:none; border-top:1px solid var(--line);}
+    .rm-steps{grid-template-columns:1fr 1fr; row-gap:30px;}
+  }
+</style>
+</head>
+<body>
+
+<!-- ============ HERO ============ -->
+<section class="hero">
+  <svg class="hero-veins" viewBox="0 0 1200 800" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M1050 -20 C 980 140, 1040 260, 950 380 C 880 470, 920 580, 850 700" stroke="#b08a4e" stroke-width="1" fill="none" opacity="0.35"/>
+    <path d="M1000 -20 C 940 120, 990 240, 900 360 C 840 450, 870 560, 800 680" stroke="#8a9c7e" stroke-width="1" fill="none" opacity="0.3"/>
+    <circle cx="1050" cy="140" r="2.5" fill="#b08a4e" opacity="0.6"/>
+    <circle cx="950" cy="380" r="2.5" fill="#8a9c7e" opacity="0.6"/>
+    <circle cx="850" cy="700" r="2.5" fill="#b08a4e" opacity="0.5"/>
+    <g opacity="0.5">
+      <path d="M980 250 q40 -30 60 10 q -35 20 -60 -10 Z" fill="#8a9c7e" opacity="0.25"/>
+      <path d="M1080 420 q40 -30 60 10 q -35 20 -60 -10 Z" fill="#8a9c7e" opacity="0.2"/>
+    </g>
+  </svg>
+  <div class="hero-inner">
+    <div class="hero-eyebrow">HIGHZONE BIO · OPEN ECONOMY</div>
+    <h1>베란다 화분 하나에서<br>논밭까지, 기술로 잇다</h1>
+    <p>하이존바이오의 바이오 기술이 작은 공간의 작물 하나부터 대형 스마트팜까지 상품 가치를 끌어올리고, 그 가치를 하나의 유통 생태계로 연결하는 오픈 이코노미 플랫폼입니다.</p>
+    <div class="hero-tags">
+      <div class="hero-tag">이온화 탄소 기술</div>
+      <div class="hero-tag">기능성 미네랄</div>
+      <div class="hero-tag">공간정화 ABASPO</div>
+      <div class="hero-tag">미니홈피 · 공동몰 · 체인 거점</div>
+    </div>
+  </div>
+  <div class="scroll-cue"><div class="line"></div>스크롤해서 보기</div>
+</section>
+
+<!-- ============ PROBLEM ============ -->
+<section class="problem">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="kicker">문제의식</div>
+      <h2>왜 지금까지는 없었을까</h2>
+      <p class="lead">기존 유통·스마트팜 플랫폼이 놓치고 있던 세 가지 지점에서, 하이존바이오는 다른 길을 갑니다.</p>
+    </div>
+    <div class="problem-grid">
+      <div class="problem-item">
+        <div class="num">01</div>
+        <h3>기술 지원 없는 오픈마켓</h3>
+        <p>쿠팡·스마트스토어는 입점 업체를 거래처로만 볼 뿐, 상품의 가치 자체를 끌어올려주지 않습니다.</p>
+      </div>
+      <div class="problem-item">
+        <div class="num">02</div>
+        <h3>대규모 농가 중심의 시장</h3>
+        <p>스마트팜 플랫폼은 큰 시설 위주라 베란다, 사무실, 카페 같은 작은 공간은 처음부터 시장 밖입니다.</p>
+      </div>
+      <div class="problem-item">
+        <div class="num">03</div>
+        <h3>가치는 있지만 팔 방법이 없다</h3>
+        <p>좋은 원료·작물이 있어도 브랜딩과 판로 개척 역량이 없어 제값을 받지 못하는 농가와 소상공인이 많습니다.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TECH ============ -->
+<section class="tech">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="kicker">핵심 기술 자산</div>
+      <h2>기술이 상품 가치를 먼저 올립니다</h2>
+      <p class="lead">현재 상용화된 기술과 확장 예정 파이프라인이 하나의 플랫폼 위에서 작동합니다.</p>
+    </div>
+
+    <div class="tech-row">
+      <div>
+        <svg class="tech-icon" viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="36" cy="36" r="26" stroke="#5b4430" stroke-width="1.2"/>
+          <circle cx="36" cy="4" fill="#b08a4e"/>
+          <circle cx="52" cy="30" r="2.5" fill="#8a9c7e"/>
+          <circle cx="24" cy="48" r="2.5" fill="#8a9c7e"/>
+          <circle cx="50" cy="50" r="2.5" fill="#8a9c7e"/>
+          <path d="M36 36 L52 30 M36 36 L24 48 M36 36 L50 50" stroke="#b08a4e" stroke-width="1"/>
+        </svg>
+        <div class="tech-name">이온화 탄소 플랫폼</div>
+      </div>
+      <div class="tech-body">
+        <h3>PRO GROW 외 6대 포뮬러</h3>
+        <p>탄소를 이온 단위로 제어해 작물의 영양 흡수율을 끌어올리고, 토양 유기탄소 축적으로 연작 장해를 완화합니다.</p>
+        <span class="tech-metric">영양 흡수율 85%↑ · 화학비료 대비 흡수율 최대 +340%</span>
+      </div>
+    </div>
+
+    <div class="tech-row">
+      <div>
+        <svg class="tech-icon" viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M36 14 L54 24 V44 L36 54 L18 44 V24 Z" stroke="#5b4430" stroke-width="1.2"/>
+          <path d="M36 24 L45 29 V39 L36 44 L27 39 V29 Z" stroke="#b08a4e" stroke-width="1.2"/>
+        </svg>
+        <div class="tech-name">기능성 미네랄 라인</div>
+      </div>
+      <div class="tech-body">
+        <h3>은수용액 · 셀레늄 · 바이오레드졸</h3>
+        <p>은(Ag), 셀레늄(Se) 등 기능성 미네랄 수용액으로 작물의 생육과 내병성을 높이는 라인업입니다.</p>
+        <span class="tech-metric">3개년 실증 평균 이삭 수 +24.5% · 낟알 수 +41%</span>
+      </div>
+    </div>
+
+    <div class="tech-row">
+      <div>
+        <svg class="tech-icon" viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="36" cy="36" r="6" fill="#8a9c7e"/>
+          <circle cx="36" cy="36" r="14" stroke="#8a9c7e" stroke-width="1"/>
+          <circle cx="36" cy="36" r="22" stroke="#b08a4e" stroke-width="1"/>
+          <circle cx="36" cy="14" r="1.6" fill="#b08a4e"/>
+          <circle cx="58" cy="36" r="1.6" fill="#b08a4e"/>
+        </svg>
+        <div class="tech-name">ABASPO 공간정화</div>
+      </div>
+      <div class="tech-body">
+        <h3>천연 식물성 기체 기반 공간 소독</h3>
+        <p>100% 천연 식물 원물 발효 기체를 공간에 확산시켜 유해물질과 병원균을 분해·불활화하는 확장 파이프라인 기술입니다.</p>
+      </div>
+    </div>
+
+    <div class="tech-row">
+      <div>
+        <svg class="tech-icon" viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="18" y="16" width="36" height="40" rx="2" stroke="#5b4430" stroke-width="1.2"/>
+          <path d="M24 28 L48 28 M24 36 L48 36 M24 44 L40 44" stroke="#b08a4e" stroke-width="1.2"/>
+        </svg>
+        <div class="tech-name">AI 식물병원</div>
+      </div>
+      <div class="tech-body">
+        <h3>사진 한 장으로 진단, 즉시 처방</h3>
+        <p>병충해를 사진으로 진단하고 맞춤 처방을 자동으로 제안해, 초보자도 큰 시행착오 없이 재배를 시작할 수 있습니다.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FLOW / BUSINESS MODEL ============ -->
+<section class="flow">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="kicker">사업 구조</div>
+      <h2>따로 보이지만, 하나로 연결된 유통망</h2>
+      <p class="lead">참여 업체마다 독립된 몰처럼 보이지만, 실제로는 하나의 생태계 위에서 움직입니다.</p>
+    </div>
+
+    <div class="flow-diagram">
+      <div class="flow-step">
+        <div class="step-label">STEP 1</div>
+        <h3>미니홈피</h3>
+        <p>참여 농가·업체별 독립 브랜드처럼 보이는 개별 페이지. 지도에도 함께 표시됩니다.</p>
+        <svg class="flow-arrow" viewBox="0 0 26 26"><path d="M4 13 H22 M15 6 L22 13 L15 20" stroke="#b08a4e" stroke-width="1.6" fill="none"/></svg>
+      </div>
+      <div class="flow-step">
+        <div class="step-label">STEP 2</div>
+        <h3>공동 쇼핑몰</h3>
+        <p>모든 미니홈피의 상품과 소개가 자동으로 함께 노출되는 하이존바이오 통합몰입니다.</p>
+        <svg class="flow-arrow" viewBox="0 0 26 26"><path d="M4 13 H22 M15 6 L22 13 L15 20" stroke="#b08a4e" stroke-width="1.6" fill="none"/></svg>
+      </div>
+      <div class="flow-step">
+        <div class="step-label">STEP 3</div>
+        <h3>외부 채널 연계</h3>
+        <p>쿠팡·네이버스토어 등에도 같은 상품이 링크로 노출되어, 외부 트래픽을 함께 끌어옵니다.</p>
+      </div>
+    </div>
+
+    <div class="flow-branch">
+      <div class="branch-card">
+        <h4>자사 페이지에서 구매</h4>
+        <p>수수료가 빠지지 않으므로 포인트 적립·사용 혜택을 더 크게 제공합니다.</p>
+      </div>
+      <div class="branch-card alt">
+        <h4>외부 채널에서 구매</h4>
+        <p>포인트는 없지만, 그 유입 경로를 통한 거래 전체에서 제휴 수익을 확보합니다. 구매·리뷰 수를 함께 키우는 효과가 있습니다.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SPACES ============ -->
+<section class="spaces">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="kicker">누구나 시작할 수 있는 공간</div>
+      <h2>지금 가진 공간이면 충분합니다</h2>
+      <p class="lead">크기와 상관없이, 씨앗부터 모종·완성묘까지 단계별로 판매하고 지원합니다.</p>
+    </div>
+    <div class="space-list">
+      <div class="space-card">
+        <div class="icon-box">
+          <svg width="34" height="34" viewBox="0 0 34 34" fill="none"><path d="M17 6 C 10 12, 10 20, 17 28 C 24 20, 24 12, 17 6 Z" stroke="#5b4430" stroke-width="1.3"/><path d="M17 12 V26" stroke="#8a9c7e" stroke-width="1.3"/></svg>
+        </div>
+        <h4>베란다 · 주방</h4>
+        <p>가족의 건강을 위한 소규모 재배</p>
+      </div>
+      <div class="space-card">
+        <div class="icon-box">
+          <svg width="34" height="34" viewBox="0 0 34 34" fill="none"><rect x="7" y="10" width="20" height="16" stroke="#5b4430" stroke-width="1.3"/><path d="M11 10 V6 H23 V10" stroke="#5b4430" stroke-width="1.3"/></svg>
+        </div>
+        <h4>사무실 · 매장</h4>
+        <p>브랜드 이미지와 인테리어 효과</p>
+      </div>
+      <div class="space-card">
+        <div class="icon-box">
+          <svg width="34" height="34" viewBox="0 0 34 34" fill="none"><path d="M8 26 L14 12 L20 22 L23 16 L27 26 Z" stroke="#5b4430" stroke-width="1.3" stroke-linejoin="round"/></svg>
+        </div>
+        <h4>전원주택 · 마당</h4>
+        <p>규모 있는 취미형 재배</p>
+      </div>
+      <div class="space-card">
+        <div class="icon-box">
+          <svg width="34" height="34" viewBox="0 0 34 34" fill="none"><rect x="6" y="13" width="22" height="13" rx="1.5" stroke="#5b4430" stroke-width="1.3"/><path d="M10 13 V9 H24 V13" stroke="#5b4430" stroke-width="1.3"/></svg>
+        </div>
+        <h4>컨테이너</h4>
+        <p>이동·확장이 쉬운 소형 재배 공간</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CHAIN ============ -->
+<section class="chain">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="kicker">오프라인 확장</div>
+      <h2>플래그십 하나, 그리고 반복 가능한 거점들</h2>
+      <p class="lead">대형 실증 모델과 소규모 거점을 같은 시스템으로 묶어 표준화된 형태로 늘려갑니다.</p>
+    </div>
+    <div class="chain-split">
+      <div class="chain-panel a">
+        <div class="chain-tag">FLAGSHIP</div>
+        <h3>양평형 모델</h3>
+        <p>대형 실증단지이자 브랜드 랜드마크. 스마트 온실·웰니스·로컬마켓이 결합된 복합 거점으로, 투자 유치 스토리의 중심이 됩니다.</p>
+        <div class="chain-meta"><span>대형 · 복합시설</span><span>부지·법인 절차 진행 중</span></div>
+      </div>
+      <div class="chain-panel b">
+        <div class="chain-tag">CHAIN</div>
+        <h3>임실형 거점</h3>
+        <p>이미 협업을 제안해 온 농가·소규모 부지를 표준 포맷으로 확산하는 반복 가능한 모델. 2호점, 3호점의 출발점입니다.</p>
+        <div class="chain-meta"><span>소규모 · 농가/매장 단위</span><span>협업 제안 접수 단계</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ROADMAP ============ -->
+<section class="roadmap">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="kicker">로드맵</div>
+      <h2>지금부터 확산까지</h2>
+    </div>
+    <div class="rm-line">
+      <div class="rm-steps">
+        <div class="rm-step"><div class="rm-dot"></div><div class="phase">1단계</div><h4>자사몰 고도화 + 미니홈피 구조 설계</h4><p>초기 참여 업체와 함께 기본 구조를 완성합니다.</p></div>
+        <div class="rm-step"><div class="rm-dot"></div><div class="phase">2단계</div><h4>공동몰 통합 + 외부 채널 연계 테스트</h4><p>제휴 수익 구조를 확정하고 트래픽을 검증합니다.</p></div>
+        <div class="rm-step"><div class="rm-dot"></div><div class="phase">3단계</div><h4>소규모 체인 거점 시범 운영</h4><p>임실 등 후보지를 표준 포맷으로 시범 운영합니다.</p></div>
+        <div class="rm-step"><div class="rm-dot"></div><div class="phase">4단계</div><h4>양평 플래그십 연계, 전국 확산</h4><p>투자 유치 이후 체인 거점을 본격 확산합니다.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ NOTE ============ -->
+<div class="note">
+  <div class="wrap">
+    <div class="mark">※</div>
+    <p>이 페이지는 투자자에게 보여드리기 위해 핵심 스토리만 담은 요약본입니다. 수치·지분 구조·법률 검토가 필요한 세부 내용은 별도의 상세 자료(사업계획서)에서 다루고 있습니다.</p>
+  </div>
+</div>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="wrap">
+    <h2>기술로 시작해, 생태계로 이어갑니다</h2>
+    <p>하이존바이오는 작은 공간의 화분 하나에서부터 대형 스마트팜까지, 기술과 유통을 하나로 묶는 플랫폼을 만들어가고 있습니다.</p>
+    <div class="foot-bottom">
+      <span>HIGHZONE BIO · 오픈 이코노미 플랫폼 (작업 초안)</span>
+      <span>highzonebio.vercel.app</span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
