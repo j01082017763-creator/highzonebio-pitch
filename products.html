@@ -1,0 +1,817 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+<title>하이존바이오 미니홈피 — 하우스 농가 프리미엄 20선</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@600;700;900&family=Pretendard:wght@300;400;500;600;700;800&family=Montserrat:wght@700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
+
+<style>
+  :root {
+    --ink: #191e17;
+    --paper: #f6f3eb;
+    --card: #ffffff;
+    --forest: #1b3824;
+    --forest-deep: #0f2015;
+    --forest-light: #2a5237;
+    --gold: #b08a4e;
+    --gold-light: #f5eedf;
+    --sage: #77926e;
+    --sage-light: #eef3ec;
+    --line: #e5ded0;
+    --maxw: 1100px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif;
+    line-height: 1.6;
+    overflow-x: hidden;
+    word-break: keep-all;
+    padding-bottom: 60px;
+  }
+  h1, h2, h3, .serif { font-family: 'Noto Serif KR', serif; }
+  .mont { font-family: 'Montserrat', sans-serif; }
+  button { font-family: inherit; cursor: pointer; border: none; outline: none; background: none; }
+  img { max-width: 100%; height: auto; display: block; }
+  .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 20px; }
+
+  /* ---------- HEADER ---------- */
+  header {
+    background: rgba(15, 32, 21, 0.96);
+    backdrop-filter: blur(10px);
+    position: sticky; top: 0; z-index: 100;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+  }
+  .header-inner {
+    max-width: var(--maxw); margin: 0 auto; padding: 14px 20px;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .brand-box { display: flex; align-items: center; gap: 10px; color: #f4f0e6; }
+  .brand-badge {
+    background: var(--gold); color: #0f2015; font-size: 11px; font-weight: 800;
+    padding: 3px 8px; border-radius: 4px; letter-spacing: 0.05em;
+  }
+  .brand-title { font-size: 16px; font-weight: 700; }
+  .header-meta { font-size: 12px; color: #c8c2b2; }
+
+  /* ---------- HERO BANNER ---------- */
+  .hero-banner {
+    background: linear-gradient(155deg, var(--forest-deep), #193322);
+    color: #f4f0e6; padding: 48px 0 38px; position: relative; overflow: hidden;
+  }
+  .hero-banner h1 {
+    font-size: clamp(26px, 4.5vw, 42px); line-height: 1.3; font-weight: 800; margin-bottom: 12px;
+  }
+  .hero-banner h1 span { color: #e4c489; }
+  .hero-banner p { font-size: 15px; color: #d0cab8; max-width: 650px; line-height: 1.65; }
+  .hero-chips { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 20px; }
+  .hero-chip {
+    background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 999px; padding: 5px 14px; font-size: 12px; color: #e7e2d4;
+  }
+
+  /* ---------- CATEGORY FILTER TABS ---------- */
+  .filter-section {
+    position: sticky; top: 57px; z-index: 90;
+    background: var(--paper); border-bottom: 1px solid var(--line);
+    padding: 12px 0;
+  }
+  .tabs-row {
+    display: flex; gap: 8px; overflow-x: auto; scrollbar-width: none; white-space: nowrap; padding-bottom: 4px;
+  }
+  .tabs-row::-webkit-scrollbar { display: none; }
+  .tab-btn {
+    background: #ffffff; border: 1px solid var(--line); border-radius: 999px;
+    padding: 7px 16px; font-size: 13px; font-weight: 600; color: #5a5344;
+    transition: all 0.2s ease;
+  }
+  .tab-btn.active {
+    background: var(--forest); color: #ffffff; border-color: var(--forest);
+    box-shadow: 0 2px 8px rgba(27,56,36,0.25);
+  }
+
+  /* ---------- PRODUCT GRID ---------- */
+  .catalog-section { padding: 32px 0 60px; }
+  .grid-title-row {
+    display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 20px;
+  }
+  .grid-title-row h2 { font-size: 20px; font-weight: 800; color: var(--forest-deep); }
+  .grid-count { font-size: 13px; color: #726a5a; font-weight: 500; }
+
+  .prod-grid {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px;
+  }
+  .prod-card {
+    background: var(--card); border: 1px solid var(--line); border-radius: 16px;
+    overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+    cursor: pointer; transition: transform 0.2s, box-shadow 0.2s;
+    display: flex; flex-direction: column; justify-content: space-between;
+  }
+  .prod-card:hover { transform: translateY(-4px); box-shadow: 0 8px 20px rgba(0,0,0,0.08); }
+  
+  .card-img-wrap {
+    width: 100%; aspect-ratio: 4/3; background: #e9e4d6;
+    position: relative; overflow: hidden; display: flex; align-items: center; justify-content: center;
+  }
+  .card-emoji { font-size: 54px; filter: drop-shadow(0 4px 10px rgba(0,0,0,0.15)); }
+  .card-badge-harvest {
+    position: absolute; top: 10px; left: 10px;
+    background: rgba(15, 32, 21, 0.85); color: #fff;
+    font-size: 10.5px; font-weight: 700; padding: 3px 8px; border-radius: 6px;
+    backdrop-filter: blur(4px);
+  }
+  .card-badge-tech {
+    position: absolute; bottom: 8px; right: 8px;
+    background: var(--gold-light); color: #876228; border: 1px solid rgba(176,138,78,0.3);
+    font-size: 10px; font-weight: 700; padding: 2px 7px; border-radius: 4px;
+  }
+
+  .card-body { padding: 16px 14px; flex: 1; display: flex; flex-direction: column; justify-content: space-between; }
+  .farm-name { font-size: 11.5px; color: var(--sage); font-weight: 700; margin-bottom: 4px; }
+  .prod-title { font-size: 15px; font-weight: 700; color: var(--ink); line-height: 1.4; margin-bottom: 6px; }
+  .prod-desc-short { font-size: 12.5px; color: #6b6352; line-height: 1.5; margin-bottom: 12px; }
+  
+  .card-meta-row {
+    display: flex; align-items: baseline; justify-content: space-between;
+    border-top: 1px dashed var(--line); padding-top: 10px; margin-top: auto;
+  }
+  .price-box { display: flex; flex-direction: column; }
+  .price-num { font-size: 17px; font-weight: 800; color: var(--forest); }
+  .weight-text { font-size: 11px; color: #8d8574; }
+  .hzp-tag {
+    font-size: 11px; font-weight: 700; color: #8a6427;
+    background: #fdf6e7; padding: 3px 7px; border-radius: 4px;
+  }
+
+  @media (max-width: 980px) {
+    .prod-grid { grid-template-columns: repeat(3, 1fr); gap: 14px; }
+  }
+  @media (max-width: 680px) {
+    .prod-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+    .card-body { padding: 12px 10px; }
+    .prod-title { font-size: 14px; }
+    .card-emoji { font-size: 44px; }
+  }
+  @media (max-width: 380px) {
+    .prod-grid { grid-template-columns: 1fr; }
+  }
+
+  /* ---------- FULL DETAIL MODAL (SHOPPING DETAIL PAGE) ---------- */
+  .modal-overlay {
+    position: fixed; inset: 0; z-index: 200;
+    background: rgba(0,0,0,0.65); backdrop-filter: blur(5px);
+    display: none; align-items: center; justify-content: center; padding: 14px;
+  }
+  .modal-overlay.open { display: flex; animation: fadeIn 0.25s ease; }
+  @keyframes fadeIn { from{opacity:0;} to{opacity:1;} }
+
+  .detail-sheet {
+    background: #ffffff; border-radius: 22px; max-width: 580px; width: 100%;
+    max-height: 92vh; overflow-y: auto; position: relative;
+    box-shadow: 0 16px 40px rgba(0,0,0,0.3);
+    padding-bottom: 74px; /* for sticky bottom action bar */
+  }
+  .btn-close-modal {
+    position: absolute; top: 16px; right: 16px; z-index: 10;
+    width: 34px; height: 34px; border-radius: 50%;
+    background: rgba(0,0,0,0.5); color: #ffffff;
+    display: flex; align-items: center; justify-content: center; font-size: 20px;
+  }
+
+  .detail-hero {
+    height: 240px; background: linear-gradient(135deg, #1b3824, #0f2015);
+    display: flex; align-items: center; justify-content: center; position: relative;
+  }
+  .detail-hero .big-emoji { font-size: 90px; filter: drop-shadow(0 8px 24px rgba(0,0,0,0.3)); }
+  .detail-live-tag {
+    position: absolute; bottom: 14px; left: 16px;
+    background: rgba(255,255,255,0.92); color: #b01a1a;
+    font-size: 11.5px; font-weight: 800; padding: 4px 10px; border-radius: 999px;
+    display: flex; align-items: center; gap: 5px;
+  }
+
+  .detail-body { padding: 22px 20px; }
+  .detail-farm-header {
+    display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px;
+  }
+  .detail-farm-title { font-size: 13px; font-weight: 700; color: var(--forest); display: flex; align-items: center; gap: 4px; }
+  .detail-verified { font-size: 11px; color: var(--sage); font-weight: 600; }
+  .detail-title { font-size: 22px; font-weight: 800; color: var(--ink); line-height: 1.35; margin-bottom: 10px; }
+  .detail-price-row { display: flex; align-items: baseline; gap: 10px; margin-bottom: 18px; }
+  .detail-price { font-size: 26px; font-weight: 900; color: var(--forest-deep); }
+  .detail-unit { font-size: 13px; color: #7a7260; }
+  .detail-hzp-box {
+    background: #fbf7ee; border: 1px solid var(--gold);
+    padding: 10px 14px; border-radius: 10px; margin-bottom: 22px;
+    display: flex; align-items: center; justify-content: space-between; font-size: 13px;
+  }
+  .detail-hzp-box strong { color: #876228; }
+
+  /* Tech Badge Box */
+  .tech-spec-box {
+    background: var(--sage-light); border-left: 4px solid var(--forest);
+    padding: 14px 16px; border-radius: 0 12px 12px 0; margin-bottom: 22px;
+  }
+  .tech-spec-title { font-size: 12.5px; font-weight: 700; color: var(--forest); text-transform: uppercase; margin-bottom: 4px; }
+  .tech-spec-desc { font-size: 13.5px; color: #233728; line-height: 1.5; font-weight: 600; }
+
+  /* Metrics 3-Col */
+  .metrics-3col {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 24px;
+  }
+  .m-box {
+    background: #faf8f5; border: 1px solid var(--line); border-radius: 10px; padding: 10px; text-align: center;
+  }
+  .m-box .label { font-size: 11px; color: #726b5b; margin-bottom: 2px; }
+  .m-box .val { font-size: 14px; font-weight: 800; color: var(--forest-deep); }
+
+  /* Detail Content Blocks */
+  .content-section { margin-bottom: 22px; }
+  .content-section h4 { font-size: 15.5px; font-weight: 700; color: var(--forest-deep); margin-bottom: 8px; border-bottom: 2px solid var(--line); padding-bottom: 4px; }
+  .content-section p { font-size: 13.5px; color: #4e483b; line-height: 1.65; }
+
+  /* Farm-Tok Creator Bar */
+  .creator-bar {
+    background: #fdfaf2; border: 1px solid var(--gold); border-radius: 12px;
+    padding: 14px; display: flex; align-items: center; gap: 12px; margin-bottom: 20px;
+  }
+  .creator-avatar { width: 44px; height: 44px; border-radius: 50%; background: var(--forest); color: #fff; display: flex; align-items: center; justify-content: center; font-size: 20px; }
+  .creator-info h5 { font-size: 13.5px; font-weight: 700; }
+  .creator-info p { font-size: 12px; color: #6d6656; }
+  .btn-farmtok {
+    margin-left: auto; background: #e02424; color: #fff; font-size: 11.5px; font-weight: 700;
+    padding: 6px 12px; border-radius: 999px; display: flex; align-items: center; gap: 4px;
+  }
+
+  /* Fixed Bottom CTA in Modal */
+  .modal-bottom-bar {
+    position: absolute; bottom: 0; left: 0; right: 0;
+    background: #ffffff; border-top: 1px solid var(--line);
+    padding: 12px 18px; display: flex; align-items: center; gap: 10px;
+    border-radius: 0 0 22px 22px;
+  }
+  .btn-cart {
+    background: #eee8d8; color: var(--forest);
+    width: 48px; height: 48px; border-radius: 12px;
+    display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+  }
+  .btn-buy-now {
+    flex: 1; height: 48px; border-radius: 12px;
+    background: var(--forest); color: #ffffff; font-size: 15px; font-weight: 800;
+    display: flex; align-items: center; justify-content: center; gap: 6px;
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="header-inner">
+    <div class="brand-box">
+      <span class="brand-badge">HIGHZONE</span>
+      <span class="brand-title">미니홈피 하우스 농가 직거래 20선</span>
+    </div>
+    <div class="header-meta">100% 당일수확 무농약 바이오</div>
+  </div>
+</header>
+
+<!-- HERO BANNER -->
+<section class="hero-banner">
+  <div class="wrap">
+    <h1>농부의 미니홈피에서 만나는<br><span>하이존바이오 스마트 하우스 농산물</span></h1>
+    <p>
+      이온화 탄소 기술과 기능성 미네랄로 재배하여 영양 흡수율과 당도를 극대화한 하우스 농가의 신선 작물입니다. 
+      소비자가 구매할 때마다 결제 금액의 15%가 스마트 온실 지분 배당(HZP)으로 환원됩니다.
+    </p>
+    <div class="hero-chips">
+      <span class="hero-chip">🌱 탄소 이온 담체 기술</span>
+      <span class="hero-chip">🛡️ 은 나노 무농약 방어막</span>
+      <span class="hero-chip">✨ 항산화 셀레늄 고기능성</span>
+      <span class="hero-chip">🚚 당일 수확 직배송</span>
+    </div>
+  </div>
+</section>
+
+<!-- CATEGORY FILTER -->
+<div class="filter-section">
+  <div class="wrap">
+    <div class="tabs-row">
+      <button class="tab-btn active" onclick="filterCategory('all')">전체보기 (20)</button>
+      <button class="tab-btn" onclick="filterCategory('salad')">🥗 유럽형 샐러드 잎채소</button>
+      <button class="tab-btn" onclick="filterCategory('fruit')">🍅 고당도 과채류</button>
+      <button class="tab-btn" onclick="filterCategory('mineral')">✨ 기능성 미네랄 특화</button>
+      <button class="tab-btn" onclick="filterCategory('herb')">🌿 허브 & 웰빙 키트</button>
+    </div>
+  </div>
+</div>
+
+<!-- CATALOG GRID -->
+<main class="catalog-section">
+  <div class="wrap">
+    <div class="grid-title-row">
+      <h2>하우스 재배 농가 대표 상품</h2>
+      <span class="grid-count" id="itemCount">총 20개 상품</span>
+    </div>
+    <div class="prod-grid" id="productGrid">
+      <!-- 20 Product Cards dynamically injected -->
+    </div>
+  </div>
+</main>
+
+<!-- DETAIL MODAL SHEET -->
+<div class="modal-overlay" id="detailModal">
+  <div class="detail-sheet">
+    <button class="btn-close-modal" onclick="closeDetail()">&times;</button>
+    
+    <div class="detail-hero" id="modalHero">
+      <div class="big-emoji" id="modalEmoji">🥬</div>
+      <div class="detail-live-tag">
+        <span class="material-symbols-outlined" style="font-size:15px;">schedule</span>
+        <span id="modalHarvest">오전 10시 수확 당일 출하</span>
+      </div>
+    </div>
+
+    <div class="detail-body">
+      <div class="detail-farm-header">
+        <span class="detail-farm-title" id="modalFarm">전북 완주 성심농장</span>
+        <span class="detail-verified">✓ 하이존바이오 인증농가</span>
+      </div>
+
+      <h3 class="detail-title" id="modalTitle">황금빛 버터헤드 레터스</h3>
+      
+      <div class="detail-price-row">
+        <span class="detail-price" id="modalPrice">₩6,800</span>
+        <span class="detail-unit" id="modalUnit">/ 300g (뿌리채 포기 수확)</span>
+      </div>
+
+      <div class="detail-hzp-box">
+        <span>소비 지분 환원 혜택</span>
+        <strong id="modalHzp">+1,020 HZP 적립 (15%)</strong>
+      </div>
+
+      <!-- Tech Feature Block -->
+      <div class="tech-spec-box">
+        <div class="tech-spec-title" id="modalTechTitle">적용 바이오 기술</div>
+        <div class="tech-spec-desc" id="modalTechDesc">PRO GROW 제5원소 탄소 나노 담체로 세포벽 영양 흡수율 85% 달성</div>
+      </div>
+
+      <!-- 3 Metrics -->
+      <div class="metrics-3col">
+        <div class="m-box">
+          <div class="label">재배 방식</div>
+          <div class="val" id="modalCultivation">하우스 수경</div>
+        </div>
+        <div class="m-box">
+          <div class="label">당도/품질</div>
+          <div class="val" id="modalBrix">부드러운 버터향</div>
+        </div>
+        <div class="m-box">
+          <div class="label">농약 잔류</div>
+          <div class="val" style="color:var(--forest);">0.00% 불검출</div>
+        </div>
+      </div>
+
+      <!-- Farm-Tok Creator Bar -->
+      <div class="creator-bar">
+        <div class="creator-avatar">👨‍🌾</div>
+        <div class="creator-info">
+          <h5 id="modalFarmerName">농부 박성심 대표</h5>
+          <p id="modalFarmerStory">"정직하게 키운 채소는 잎사귀 윤기부터 다릅니다."</p>
+        </div>
+        <button class="btn-farmtok" onclick="alert('Farm-Tok 15초 재배 라이브 영상으로 이동합니다!')">
+          <span class="material-symbols-outlined" style="font-size:14px;">play_arrow</span>
+          <span>영상보기</span>
+        </button>
+      </div>
+
+      <!-- Detailed Descriptions -->
+      <div class="content-section">
+        <h4>상품 상세 특징</h4>
+        <p id="modalDetailText">
+          버터처럼 부드러운 식감과 은은한 단맛이 일품인 프리미엄 유럽형 상추입니다. 
+          하이존바이오의 이온화 탄소 기술을 통해 뿌리 끝까지 영양분이 풍부하게 공급되어 
+          일반 상추보다 쓴맛이 없고 아삭하면서도 입안에서 사르르 녹습니다.
+        </p>
+      </div>
+
+      <div class="content-section">
+        <h4>맛있게 즐기는 법 & 보관 팁</h4>
+        <p id="modalRecipeText">
+          뿌리 스펀지를 그대로 머금은 채 밀폐 용기에 담아 냉장 보관하시면 최대 2주간 갓 수확한 싱싱함을 유지합니다. 
+          드레싱만 가볍게 곁들여 샐러드로 드시거나, 안심 고기 쌈밥용으로 최고의 궁합을 자랑합니다.
+        </p>
+      </div>
+
+      <div class="content-section">
+        <h4>배송 및 안심 보장</h4>
+        <p>
+          주문 확인 즉시 아침 이슬을 머금은 상태에서 뿌리채 포기 수확하여 친환경 생분해 파우치에 포장 배송합니다. 
+          배송 중 시들거나 파손 시 100% 무료 재발송 또는 환불을 보장합니다.
+        </p>
+      </div>
+    </div>
+
+    <!-- Fixed Bottom Buy Bar -->
+    <div class="modal-bottom-bar">
+      <button class="btn-cart" onclick="alert('장바구니에 담겼습니다!')">
+        <span class="material-symbols-outlined">shopping_cart</span>
+      </button>
+      <button class="btn-buy-now" onclick="alert('구매 결제창으로 연결됩니다. 결제 즉시 HZP 지분 배당이 적립됩니다!')">
+        <span>바로 주문하기</span>
+        <span class="material-symbols-outlined" style="font-size:18px;">arrow_forward</span>
+      </button>
+    </div>
+  </div>
+</div>
+
+<script>
+  // 20 Greenhouse Agricultural Products Data
+  const products = [
+    // 1. 유럽형 샐러드 잎채소 (Salad Greens)
+    {
+      id: 1, category: "salad", emoji: "🥬",
+      farm: "전북 완주 성심농장",
+      title: "황금빛 완숙 버터헤드 레터스",
+      desc: "버터처럼 고소하고 쓴맛 없는 프리미엄 유럽 샐러드",
+      price: 6800, unit: "300g (뿌리채 2포기)",
+      hzp: 1020, harvest: "오전 9시 수확 당일 발송",
+      techTitle: "이온화 탄소 PRO GROW 흡수 기술",
+      techDesc: "제5원소 탄소 나노 담체로 칼슘·미네랄 흡수율 85% 극대화",
+      cultivation: "밀폐 스마트온실", brix: "부드러운 버터풍미",
+      farmerName: "박성심 농부", farmerStory: "화학비료 없이 탄소 이온으로 키워 잎이 두껍고 윤기가 납니다.",
+      detailText: "유럽 왕실에서 즐겨 먹던 최고급 버터헤드 레터스입니다. 잎이 얇지 않고 도톰하여 씹을수록 단맛이 우러나오며, 수경 재배로 흙먼지 하나 없이 깨끗합니다.",
+      recipeText: "뿌리가 달린 상태로 배송되므로 물을 살짝 적셔 냉장 보관하면 2주 동안 살아 숨 쉽니다. 리코타 치즈 샐러드나 샌드위치용으로 강력 추천합니다."
+    },
+    {
+      id: 2, category: "salad", emoji: "🥗",
+      farm: "충남 부여 햇살스마트팜",
+      title: "크리스피 수경 카이피라",
+      desc: "꽃잎처럼 풍성하고 씹는 소리까지 경쾌한 샌드위치용 샐러드",
+      price: 6500, unit: "350g (2포기)",
+      hzp: 970, harvest: "오전 10시 수확 출하",
+      techTitle: "이온칼 & 은 나노 수용액 방어",
+      techDesc: "세포벽을 단단하게 만들어 아삭한 식감과 신선 유지력을 2배 증대",
+      cultivation: "수경 하우스", brix: "수분율 95% 아삭함",
+      farmerName: "이정훈 대표", farmerStory: "샌드위치에 넣었을 때 절대 숨이 죽지 않는 최고의 아삭함입니다.",
+      detailText: "카이피라는 부드러움과 아삭함이 공존하는 고급 샐러드 채소입니다. 수분 함량이 매우 높아 여름철 갈증 해소와 다이어트 식단에 최적화되어 있습니다.",
+      recipeText: "햄버거나 토스트에 한 잎만 넣어도 레스토랑 수준의 씹는 식감을 선사합니다. 오리엔탈 드레싱과 환상의 조화를 이룹니다."
+    },
+    {
+      id: 3, category: "salad", emoji: "🌿",
+      farm: "전북 임실 거점 1호 스마트팜",
+      title: "아삭한 하우스 미니 로메인 믹스",
+      desc: "시저 샐러드의 제왕, 줄기 끝까지 달착지근한 신선초",
+      price: 7200, unit: "400g (3포기 믹스)",
+      hzp: 1080, harvest: "반경 5km 로컬 직배송",
+      techTitle: "임실 거점 메쉬 비콘 직거래",
+      techDesc: "수확 후 3시간 이내 배송비 0원 게릴라 픽업 연동",
+      cultivation: "연동 비닐하우스", brix: "줄기 당도 5.5 Brix",
+      farmerName: "김은숙 대표", farmerStory: "동네 이웃 주민들에게 가장 먼저 전달되는 신선함의 끝판왕입니다.",
+      detailText: "로마인들이 즐겨 먹어 이름 붙은 로메인은 비타민 C와 항산화 물질이 풍부합니다. 하이존 미네랄 처방으로 잎맥이 굵고 아삭함이 오래 지속됩니다.",
+      recipeText: "닭가슴살과 파마산 치즈를 듬뿍 얹은 정통 시저 샐러드로 즐겨보세요. 삼겹살 쌈채소로도 배추보다 시원한 맛을 냅니다."
+    },
+    {
+      id: 4, category: "salad", emoji: "🌱",
+      farm: "경기 양평 지상락원 실증온실",
+      title: "레이스 이자벨 & 프릴라이스",
+      desc: "화려한 핑거푸드용 프리미엄 프릴 채소",
+      price: 7500, unit: "300g (2포기)",
+      hzp: 1120, harvest: "플래그십 당일 직송",
+      techTitle: "양평 지상락원 웰니스 클린베드",
+      techDesc: "ABASPO 100% 천연 기체 방역으로 병원균 제로 환경 재배",
+      cultivation: "유리온실 수경", brix: "쌉싸름한 감칠맛",
+      farmerName: "양평 스마트마스터", farmerStory: "식탁 위에 올려두기만 해도 꽃다발처럼 화려한 프리미엄 채소입니다.",
+      detailText: "잎 끝이 레이스처럼 잘게 갈라져 있어 드레싱을 듬뿍 머금는 고급 프릴 채소입니다. 호텔 뷔페와 파인다이닝 레스토랑에 납품되는 동일 규격입니다.",
+      recipeText: "스테이크 가니쉬나 연어 롤, 타코 위에 토핑으로 얹으면 비주얼과 식감을 동시에 완성합니다."
+    },
+    {
+      id: 5, category: "salad", emoji: "☘️",
+      farm: "경남 진주 청년스마트팜",
+      title: "알싸하고 고소한 생와일드 루꼴라",
+      desc: "피자와 파스타를 완성하는 향긋한 지중해의 맛",
+      price: 5900, unit: "200g (한 팩)",
+      hzp: 880, harvest: "새벽 이슬 수확",
+      techTitle: "은(Ag) 나노 수용액 곰팡이 차단",
+      techDesc: "잎마름병과 잎반점 없는 완벽한 A급 엽면 상태 유지",
+      cultivation: "스마트 차광하우스", brix: "특유의 견과류 향",
+      farmerName: "정민우 청년농부", farmerStory: "참깨처럼 고소하고 알싸한 맛이 농축되어 파스타 맛이 달라집니다.",
+      detailText: "루꼴라는 고소한 견과류 풍미와 알싸한 머스터드 맛이 어우러진 허브 채소입니다. 하이존 포뮬러로 잎의 엽록소가 진하고 향미가 짙습니다.",
+      recipeText: "갓 구운 화덕 피자 위에 올리브유와 함께 듬뿍 얹어 드시거나, 토마토 모짜렐라 카프레제 샐러드에 곁들여보세요."
+    },
+    {
+      id: 6, category: "salad", emoji: "🌿",
+      farm: "전남 담양 이온그린팜",
+      title: "향기 3배 짙은 이탈리안 스위트 바질",
+      desc: "직접 만드는 홈메이드 바질페스토의 필수 원료",
+      price: 6200, unit: "150g (생잎)",
+      hzp: 930, harvest: "주문 즉시 당일 채취",
+      techTitle: "PRO GROW 정밀 이온 셔틀",
+      techDesc: "에센셜 오일 함량을 높여 향기의 지속 시간을 3배 증대",
+      cultivation: "스마트 온실베드", brix: "달콤 상쾌한 바질향",
+      farmerName: "윤지현 대표", farmerStory: "비닐을 뜯는 순간 온 집안에 싱그러운 허브 숲 향기가 퍼집니다.",
+      detailText: "향긋하고 달콤한 정통 제노베제 스위트 바질입니다. 잎이 질기지 않고 연하여 생으로 씹어도 향긋함이 입안 가득 맴돕니다.",
+      recipeText: "잣, 올리브유, 마늘, 파마산 치즈와 함께 믹서에 갈아 신선한 홈메이드 바질페스토를 만들어 파스타에 비벼 드세요."
+    },
+
+    // 2. 고당도 과채류 (Fruit Vegetables)
+    {
+      id: 7, category: "fruit", emoji: "🍅",
+      farm: "충남 논산 스테비아원",
+      title: "당도 11 Brix+ 샤인 스테비 방울토마토",
+      desc: "설탕을 뿌린 듯 달콤하고 과즙이 팡팡 터지는 간식",
+      price: 9900, unit: "500g (한 팩)",
+      hzp: 1480, harvest: "완숙 선별 당일 출하",
+      techTitle: "황금수 고당도 이온 축적 포뮬러",
+      techDesc: "작물 자체의 광합성 당 축적 능력을 극대화하여 깊은 단맛 실현",
+      cultivation: "스마트 연동온실", brix: "11.5 Brix 이상",
+      farmerName: "강동원 대표", farmerStory: "아이들이 과자 대신 먼저 찾는 마법 같은 달콤한 토마토입니다.",
+      detailText: "인공 감미료를 주입한 것이 아닌, 하이존바이오 황금수 포뮬러로 작물 본연의 당분을 끌어올린 프리미엄 방울토마토입니다. 껍질이 질기지 않습니다.",
+      recipeText: "시원하게 냉장 보관했다가 간식으로 드시거나, 부라타 치즈와 꿀을 살짝 뿌려 샐러드로 즐기세요."
+    },
+    {
+      id: 8, category: "fruit", emoji: "🍒",
+      farm: "전북 익산 바이오팜",
+      title: "항산화 셀레늄 대추방울토마토",
+      desc: "하루 한 줌으로 채우는 천연 셀레늄 항산화 토마토",
+      price: 11000, unit: "750g (박스)",
+      hzp: 1650, harvest: "새벽 완숙 수확",
+      techTitle: "고농축 나노 셀레늄(Se) 흡수 특허",
+      techDesc: "작물 체내 필수 미네랄 셀레늄을 안전하게 축적시켜 기능성 인증",
+      cultivation: "ICT 스마트팜", brix: "10 Brix 고당도",
+      farmerName: "송민경 대표", farmerStory: "단순한 채소가 아닙니다. 가족 건강을 지키는 천연 영양제입니다.",
+      detailText: "대추처럼 길쭉하고 단단하여 씹는 맛이 일품인 방울토마토입니다. 강력한 항산화 물질인 셀레늄이 과육에 흡수되어 면역력 증진에 탁월합니다.",
+      recipeText: "올리브유에 살짝 구워 드시면 라이코펜과 셀레늄의 체내 흡수율이 최대 4배까지 높아집니다."
+    },
+    {
+      id: 9, category: "fruit", emoji: "🍅",
+      farm: "강원 춘천 락원농장",
+      title: "껍질 얇은 하우스 완숙 찰토마토",
+      desc: "나무에서 90% 이상 붉게 익혀 딴 옛날 찰토마토의 깊은 맛",
+      price: 13500, unit: "2kg (소박스)",
+      hzp: 2020, harvest: "주문 후 선별 수확",
+      techTitle: "바이오레드졸 도복·열과 방지",
+      techDesc: "과피 터짐(열과) 없이 속이 꽉 찬 찰진 과육 형성",
+      cultivation: "유리온실", brix: "찰진 산미와 감칠맛",
+      farmerName: "최재석 농부", farmerStory: "시중의 덜 익은 파란 토마토와는 향과 과즙의 깊이가 다릅니다.",
+      detailText: "하우스 안에서 충분한 햇빛을 받고 완숙된 상태로 수확한 찰토마토입니다. 칼로 썰었을 때 젤리 과즙이 쏟아지지 않고 속이 꽉 차 있습니다.",
+      recipeText: "토마토 달걀 볶음(토달볶), 스튜, 카프레제는 물론 설탕 없이 그냥 먹어도 토마토 본연의 깊은 감칠맛을 느낄 수 있습니다."
+    },
+    {
+      id: 10, category: "fruit", emoji: "🫑",
+      farm: "경남 진주 파프리카원",
+      title: "오색 트리 미니 파프리카",
+      desc: "비타민 C 사과의 40배! 아삭아삭 달콤한 파프리카",
+      price: 8900, unit: "500g (혼합팩)",
+      hzp: 1330, harvest: "당일 수확 색상 선별",
+      techTitle: "PRO COLOR 천연 착색 포뮬러",
+      techDesc: "인듐·미네랄 이온 제어로 껍질 광택과 과육 당도 완성",
+      cultivation: "첨단 유리온실", brix: "9 Brix 아삭함",
+      farmerName: "한상우 대표", farmerStory: "과일처럼 그냥 씹어 먹어도 과즙이 줄줄 흐르는 달콤한 파프리카입니다.",
+      detailText: "빨강, 노랑, 주황의 선명한 색감과 두툼한 과육을 자랑합니다. 쓴맛이 전혀 없어 아이들도 과일처럼 맛있게 잘 먹습니다.",
+      recipeText: "씨만 털어내고 한입 크기로 썰어 쌈장에 찍어 드시거나, 카레, 볶음밥, 샐러드 토핑으로 알록달록하게 활용하세요."
+    },
+    {
+      id: 11, category: "fruit", emoji: "🥒",
+      farm: "충남 천안 아삭농원",
+      title: "가시 없는 한입 스낵오이",
+      desc: "껍질째 오도독 씹어 먹는 수분 폭탄 핑거 오이",
+      price: 6900, unit: "5개입 (한 팩)",
+      hzp: 1030, harvest: "매일 아침 7시 수확",
+      techTitle: "이온화 탄소 수분 흡수력 강화",
+      techDesc: "토양 수분 스트레스를 제어하여 쓴맛 발생 원천 차단",
+      cultivation: "청정 수경온실", brix: "갈증 해소 청량감",
+      farmerName: "조현철 농부", farmerStory: "등산 갈 때, 운동 후 갈증 날 때 물 대신 먹는 최고의 간식입니다.",
+      detailText: "가시가 없고 껍질이 매우 연하여 깎을 필요 없이 씻어서 바로 먹는 스낵오이입니다. 쓴맛의 주원인인 쿠쿠르비타신이 전혀 없습니다.",
+      recipeText: "가방에 쏙 넣어 다니며 간식으로 드시거나, 송송 썰어 시원한 냉국이나 피클로 담그면 아삭함이 한 달 내내 유지됩니다."
+    },
+    {
+      id: 12, category: "fruit", emoji: "🍉",
+      farm: "경북 성주 햇살하우스",
+      title: "껍질째 깎아먹는 고당도 애플수박",
+      desc: "음식물 쓰레기 걱정 없는 1인 가구 맞춤형 수박",
+      price: 14000, unit: "1통 (1.2~1.5kg)",
+      hzp: 2100, harvest: "당도 비파괴 검수 출하",
+      techTitle: "하우스 공중부양 수직 재배",
+      techDesc: "햇빛을 360도 골고루 받아 껍질 끝까지 달콤한 당도 유지",
+      cultivation: "공중 유인 스마트하우스", brix: "12 Brix 이상",
+      farmerName: "배성민 대표", farmerStory: "사과처럼 칼로 슥슥 깎아서 껍질까지 얇게 즐길 수 있습니다.",
+      detailText: "바닥에서 뒹굴지 않고 공중에 매달아 키워 당도가 균일하고 껍질이 사과처럼 얇습니다. 혼자서 한 통을 남김없이 먹을 수 있습니다.",
+      recipeText: "냉장고에 1시간 두었다가 반으로 갈라 숟가락으로 떠먹거나, 화채볼로 파내어 시원한 수박 화채를 만들어보세요."
+    },
+
+    // 3. 기능성 미네랄 특화 작물 (Functional Minerals)
+    {
+      id: 13, category: "mineral", emoji: "🥬",
+      farm: "전북 전주대 산학협력 실증단",
+      title: "셀레늄 & 은수용액 7종 기능성 쌈채소 모둠",
+      desc: "치커리, 쌈케일, 적근대, 로메인 등 프리미엄 항산화 쌈세트",
+      price: 12000, unit: "600g (풍성한 4인 밥상용)",
+      hzp: 1800, harvest: "주문 당일 혼합 포장",
+      techTitle: "전주대 R&D 특허 제형 실증",
+      techDesc: "나노 은(Ag) 항균 수용액 + 셀레늄(Se) 기능성 융합 배합",
+      cultivation: "산학협력 실증스마트팜", brix: "고기 도둑 감칠맛",
+      farmerName: "하이존 R&D팀", farmerStory: "고기 먹을 때 이 쌈채소 하나면 소화도 잘되고 뒷맛이 깔끔합니다.",
+      detailText: "하이존바이오의 대표 기술인 셀레늄과 은수용액을 모두 적용한 최고급 쌈채소 컬렉션입니다. 잎 뒷면에 벌레나 흙탕물 없이 티없이 깨끗합니다.",
+      recipeText: "삼겹살, 한우 구이와 함께 싸 드시면 고기의 기름기를 잡아주고 육즙의 풍미를 2배로 올려줍니다."
+    },
+    {
+      id: 14, category: "mineral", emoji: "🪵",
+      farm: "강원 평창 웰니스스마트팜",
+      title: "뿌리·잎 통째로 먹는 3년근 수경 새싹삼",
+      desc: "사포닌이 인삼의 8배! 매일 아침 활력을 주는 수경 산양삼",
+      price: 19800, unit: "10뿌리 (이끼 포장)",
+      hzp: 2970, harvest: "신선 이끼 포장 발송",
+      techTitle: "PRO ROOT 미세근 발근 극대화",
+      techDesc: "사포닌 함량을 극대화하고 잔뿌리 흡수면적 300% 확장",
+      cultivation: "클린룸 수경시설", brix: "진한 사포닌 향",
+      farmerName: "권오성 원장", farmerStory: "잎과 줄기에 사포닌이 가장 많습니다. 버릴 것 하나 없이 통째로 드세요.",
+      detailText: "무농약 수경재배로 뇌두부터 잔뿌리, 푸른 잎까지 100% 안심하고 씹어 드실 수 있습니다. 기력 보충과 면역력 증진에 탁월합니다.",
+      recipeText: "아침 공복에 꿀에 찍어 천천히 씹어 드시거나, 우유와 꿀을 넣고 믹서에 갈아 삼 쉐이크로 드시면 하루 종일 힘이 납니다."
+    },
+    {
+      id: 15, category: "mineral", emoji: "🥕",
+      farm: "제주 청정하우스 영농조합",
+      title: "껍질째 먹는 핑거 베이비 당근",
+      desc: "흙 냄새 없이 달콤하고 아삭한 베타카로틴 덩어리",
+      price: 7800, unit: "400g (한 팩)",
+      hzp: 1170, harvest: "세척 후 에어 건조 출하",
+      techTitle: "이온화 탄소 당도 농축 포뮬러",
+      techDesc: "특유의 흙 비린내를 없애고 과일 같은 상큼한 단맛 발현",
+      cultivation: "제주 화산회토 온실", brix: "10.5 Brix 고당도",
+      farmerName: "고영민 대표", farmerStory: "당근 싫어하는 아이들도 한 번 맛보면 과자처럼 집어 먹습니다.",
+      detailText: "손가락 크기의 앙증맞은 베이비 당근으로, 껍질이 매우 얇아 깎지 않고 씻기만 해서 바로 섭취할 수 있습니다. 눈 건강에 좋은 베타카로틴이 풍부합니다.",
+      recipeText: "후무스나 마요네즈 딥소스에 찍어 핑거푸드로 즐기거나, 버터에 살짝 글레이징하여 스테이크 사이드로 곁들여보세요."
+    },
+    {
+      id: 16, category: "mineral", emoji: "🍓",
+      farm: "경남 밀양 딸기명가",
+      title: "당도 14.5 Brix 프리미엄 설향 생딸기",
+      desc: "진한 딸기향과 꽉 찬 과즙, 하우스 완숙 프리미엄 딸기",
+      price: 18500, unit: "500g (특대과 난좌포장)",
+      hzp: 2770, harvest: "새벽 수확 당일 특송",
+      techTitle: "황금수 & 셀레늄 융합 영양",
+      techDesc: "3개년 실증 과육 무름 방지 및 평균 당도 2.5 Brix 상승",
+      cultivation: "고설 수경 하우스", brix: "14.5 Brix 초고당도",
+      farmerName: "문성훈 대표", farmerStory: "향기가 하우스 밖 10미터까지 풍길 만큼 진하고 달콤합니다.",
+      detailText: "공중에 띄운 고설 베드에서 깨끗한 암반수로 키워낸 완숙 딸기입니다. 알이 굵고 끝까지 단맛이 꽉 차 있어 선물용으로도 최고입니다.",
+      recipeText: "수령 즉시 씻지 않고 꼭지만 따서 시원하게 드셔야 본연의 진한 향을 느낄 수 있습니다. 요거트나 생크림 케이크에 곁들여보세요."
+    },
+
+    // 4. 허브 & 웰빙 키트 (Herbs & Living Kit)
+    {
+      id: 17, category: "herb", emoji: "🍹",
+      farm: "경기 용인 스마트가든",
+      title: "카페 바텐더 생화 허브 번들 (민트&로즈마리)",
+      desc: "하이볼, 모히또, 칵테일에 즉시 띄우는 신선 허브",
+      price: 8500, unit: "애플민트 50g + 로즈마리 50g",
+      hzp: 1270, harvest: "주문 즉시 당일 컷팅",
+      techTitle: "ABASPO 클린룸 무균 포장",
+      techDesc: "세균·이물질 제로 청정 환경에서 세척 없이 바로 음료 투입 가능",
+      cultivation: "도심형 실내스마트팜", brix: "청량한 멘톨 에센스",
+      farmerName: "최유진 실장", farmerStory: "유명 라운지 바와 카페에 정기 납품되는 바로 그 최고급 생허브입니다.",
+      detailText: "탄산수나 위스키에 한 줄기만 넣어도 짙은 허브향이 피어오르는 칵테일 전용 생허브 세트입니다. 줄기가 튼튼하고 잎이 싱싱합니다.",
+      recipeText: "라임과 럼, 탄산수에 애플민트를 빻아 홈메이드 모히또를 만들거나, 올리브유에 로즈마리를 담가 고급 허브 오일을 만드세요."
+    },
+    {
+      id: 18, category: "herb", emoji: "🥤",
+      farm: "전남 나주 청정녹즙원",
+      title: "디톡스 착즙용 거대 수경 쌈케일",
+      desc: "쓴맛 제로! 사과와 함께 갈아 마시는 안심 해독 녹즙",
+      price: 8900, unit: "1kg (대용량 벌크)",
+      hzp: 1330, harvest: "산지 직송 착즙 전용",
+      techTitle: "이온화 탄소 연작장해 치유",
+      techDesc: "질산염 축적을 낮추고 엽록소(클로로필) 함량을 40% 증가",
+      cultivation: "대형 연동 하우스", brix: "단백하고 부드러운 즙",
+      farmerName: "신동철 대표", farmerStory: "아침마다 착즙해서 드시는 고객분들의 재구매율이 92%에 달합니다.",
+      detailText: "사람 얼굴 크기만큼 크게 자란 건강한 수경 케일입니다. 줄기가 질기지 않고 즙이 풍부하여 착즙기에 넣었을 때 맑고 푸른 녹즙이 콸콸 나옵니다.",
+      recipeText: "케일 2장 + 사과 반 개 + 바나나 반 개 + 물 100ml를 넣고 갈아주면 영양 만점 그린 스무디가 완성됩니다."
+    },
+    {
+      id: 19, category: "herb", emoji: "🎋",
+      farm: "강원 양구 DMZ 청정온실",
+      title: "연하고 굵은 하우스 그린 아스파라거스",
+      desc: "껍질 벗길 필요 없이 밑동까지 부드러운 프리미엄 가니쉬",
+      price: 13900, unit: "500g (특등급 굵기)",
+      hzp: 2080, harvest: "당일 아침 특선별",
+      techTitle: "바이오레드졸 줄기 경도 강화",
+      techDesc: "섬유질이 질겨지지 않고 아스파라긴산 함량 극대화",
+      cultivation: "DMZ 인근 온실", brix: "아삭한 감칠맛",
+      farmerName: "임병호 대표", farmerStory: "밑동 1cm만 자르고 껍질 채 올리브유에 구우면 버터 같은 풍미가 납니다.",
+      detailText: "국내산 하우스 아스파라거스는 수입산과 달리 냉동/방부 처리를 하지 않아 씹었을 때 즙이 터져 나오는 싱싱함이 살아 있습니다.",
+      recipeText: "베이컨으로 돌돌 말아 프라이팬에 굽거나, 소금·후추·올리브유를 둘러 에어프라이어에 180도 8분 구워내면 훌륭한 와인 안주가 됩니다."
+    },
+    {
+      id: 20, category: "herb", emoji: "🪴",
+      farm: "하이존바이오 본사 직영",
+      title: "베란다 룸파밍 웰빙 스타터 키트",
+      desc: "디자인 화분 + 인기 모종 4종 + PRO GROW 탄소 영양제 풀세트",
+      price: 29000, unit: "풀패키지 키트",
+      hzp: 4350, harvest: "주문 익일 안전 택배",
+      techTitle: "PRO GROW 앰플 & AI 식물병원 QR",
+      techDesc: "화분 하나로 집에서 직접 길러 먹는 1-Core 3-Doors 홈파밍 경험",
+      cultivation: "실내 베란다 최적화", brix: "우리집 안심 식탁",
+      farmerName: "하이존바이오 팀", farmerStory: "씨앗 심고 물만 주면 3주 뒤 오늘 저녁 밥상에 무농약 쌈채소가 올라옵니다.",
+      detailText: "아이들 자연 관찰용 및 힐링 취미로 가장 인기 있는 베란다 텃밭 스타터 키트입니다. 실패 없이 쑥쑥 자라는 하이존 전용 바이오 배지와 영양 앰플이 포함되어 있습니다.",
+      recipeText: "상추, 바질, 루꼴라, 방울토마토 모종이 함께 제공됩니다. 거실이나 베란다 햇볕 드는 곳에 두고 주 2회 물만 주면 매주 싱싱한 채소를 수확할 수 있습니다."
+    }
+  ];
+
+  // Render Grid
+  const grid = document.getElementById('productGrid');
+  const countSpan = document.getElementById('itemCount');
+
+  function renderProducts(items) {
+    grid.innerHTML = '';
+    countSpan.innerText = `총 ${items.length}개 상품`;
+
+    items.forEach(p => {
+      const card = document.createElement('div');
+      card.className = 'prod-card';
+      card.onclick = () => openDetail(p.id);
+      card.innerHTML = `
+        <div class="card-img-wrap">
+          <div class="card-emoji">${p.emoji}</div>
+          <span class="card-badge-harvest">${p.harvest}</span>
+          <span class="card-badge-tech">${p.techTitle.split(' ')[0]}</span>
+        </div>
+        <div class="card-body">
+          <div>
+            <div class="farm-name">${p.farm}</div>
+            <h3 class="prod-title">${p.title}</h3>
+            <p class="prod-desc-short">${p.desc}</p>
+          </div>
+          <div class="card-meta-row">
+            <div class="price-box">
+              <span class="price-num">₩${p.price.toLocaleString()}</span>
+              <span class="weight-text">${p.unit}</span>
+            </div>
+            <span class="hzp-tag">+${p.hzp.toLocaleString()} HZP</span>
+          </div>
+        </div>
+      `;
+      grid.appendChild(card);
+    });
+  }
+
+  // Filter
+  function filterCategory(cat) {
+    const btns = document.querySelectorAll('.tab-btn');
+    btns.forEach(b => b.classList.remove('active'));
+    event.target.classList.add('active');
+
+    if (cat === 'all') {
+      renderProducts(products);
+    } else {
+      const filtered = products.filter(p => p.category === cat);
+      renderProducts(filtered);
+    }
+  }
+
+  // Open Detail Modal
+  function openDetail(id) {
+    const p = products.find(item => item.id === id);
+    if (!p) return;
+
+    document.getElementById('modalEmoji').innerText = p.emoji;
+    document.getElementById('modalHarvest').innerText = p.harvest;
+    document.getElementById('modalFarm').innerText = p.farm;
+    document.getElementById('modalTitle').innerText = p.title;
+    document.getElementById('modalPrice').innerText = `₩${p.price.toLocaleString()}`;
+    document.getElementById('modalUnit').innerText = `/ ${p.unit}`;
+    document.getElementById('modalHzp').innerText = `+${p.hzp.toLocaleString()} HZP 적립 (15% 배당)`;
+    
+    document.getElementById('modalTechTitle').innerText = `적용 기술: ${p.techTitle}`;
+    document.getElementById('modalTechDesc').innerText = p.techDesc;
+    
+    document.getElementById('modalCultivation').innerText = p.cultivation;
+    document.getElementById('modalBrix').innerText = p.brix;
+
+    document.getElementById('modalFarmerName').innerText = p.farmerName;
+    document.getElementById('modalFarmerStory').innerText = `"${p.farmerStory}"`;
+
+    document.getElementById('modalDetailText').innerText = p.detailText;
+    document.getElementById('modalRecipeText').innerText = p.recipeText;
+
+    document.getElementById('detailModal').classList.add('open');
+  }
+
+  function closeDetail() {
+    document.getElementById('detailModal').classList.remove('open');
+  }
+
+  // Close when clicking overlay background
+  document.getElementById('detailModal').addEventListener('click', (e) => {
+    if (e.target.id === 'detailModal') closeDetail();
+  });
+
+  // Initial render
+  renderProducts(products);
+</script>
+
+</body>
+</html>
